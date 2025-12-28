@@ -1,108 +1,187 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LINE Flex Message Preview</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Kanit', sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        /* จำลองหน้าจอแชท LINE */
-        .chat-container {
-            width: 100%;
-            max-width: 400px;
-            background-color: #7494c0; /* สีพื้นหลังแชท LINE */
-            padding: 20px 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-            display: flex;
-            gap: 12px;
-        }
-
-        /* สไตล์ของ Bubble แต่ละใบ */
-        .bubble {
-            flex: 0 0 300px; /* ความกว้างคงที่ของแต่ละ Bubble */
-            background-color: #fff;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s;
-        }
-
-        .bubble:hover {
-            transform: scale(1.02);
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 310px;
-            object-fit: cover;
-        }
-
-        .body-content {
-            padding: 15px;
-            background-color: #9370DB; /* ตามค่าใน JSON */
-            color: white;
-            white-space: normal; /* ให้ข้อความตัดบรรทัดได้ */
-        }
-
-        .title {
-            font-weight: bold;
-            font-size: 16px;
-            color: #4A148C;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .subtitle {
-            font-size: 13px;
-            color: #6A1B9A;
-        }
-
-        /* สำหรับ Bubble ใบแรกที่เป็นปุ่ม */
-        .special-bubble {
-            position: relative;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Share Flex - แนะนำหนังสือ</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f4f4f9;
+    }
+    button {
+      padding: 16px 32px;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 50px;
+      border: none;
+      background-color: #06c755;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(6, 199, 85, 0.3);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    button:hover {
+      background-color: #05a346;
+      transform: scale(1.05);
+    }
+    button:active {
+      transform: scale(0.95);
+    }
+  </style>
 </head>
 <body>
 
-    <div class="chat-container">
-        
-        <a href="http://linecorp.com/" class="bubble special-bubble">
-            <img src="https://img5.pic.in.th/file/secure-sv1/Copy-of---360-x-450-pxf3e04f07137031af.gif" class="hero-img" style="height: 400px;">
-        </a>
+<button onclick="shareFlex()">แชร์ Flex ให้เพื่อน</button>
 
-        <a href="https://youtube.com/shorts/7fBNn4VdbIY?si=6-a1w2BK8DA67oEZ" target="_blank" class="bubble">
-            <img src="https://img5.pic.in.th/file/secure-sv1/Copy-of---360-x-450-px-1.gif" class="hero-img">
-            <div class="body-content">
-                <span class="title">1700 ศัพท์ระดับมัธยมคำศัพท์ภาษาอังกฤษที่ต้องใช้บ่อยชั้น ม.1-ม.6</span>
-                <span class="subtitle">แนะนำโดย : นตท.ภูริชญ์ อ.</span>
-            </div>
-        </a>
+<script>
+  async function shareFlex() {
+    try {
+      // เริ่มต้น LIFF (ใช้ liffId จากข้อมูลใหม่ที่ให้มา)
+      await liff.init({ liffId: "2008718257-ImyQ8FhJ" });
 
-        <a href="https://youtube.com/shorts/O_lbQFHH0f8?si=GE-H9g-BiVYp63aG" target="_blank" class="bubble">
-            <img src="https://img2.pic.in.th/86abc24ef5ab36af73c4310b74f5b3c2.gif" class="hero-img">
-            <div class="body-content">
-                <span class="title">บ้านวิกลคนประหลาด เล่ม 2</span>
-                <span class="subtitle">แนะนำโดย : นตท.ปิโยรัฐ ต.</span>
-            </div>
-        </a>
+      if (!liff.isLoggedIn()) {
+        liff.login();
+        return;
+      }
 
-    </div>
+      const flexMessage = {
+        "type": "flex",
+        "altText": "แนะนำคอนเทนต์ใหม่",
+        "contents": {
+          "type": "carousel",
+          "contents": [
+            {
+              "type": "bubble",
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "size": "full",
+                    "animated": true,
+                    "aspectMode": "cover",
+                    "aspectRatio": "2.3:3",
+                    "url": "https://img5.pic.in.th/file/secure-sv1/Copy-of---360-x-450-pxf3e04f07137031af.gif"
+                  },
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "uri",
+                      "uri": "https://liff.line.me/2008718257-ImyQ8FhJ",
+                      "label": " "
+                    },
+                    "position": "absolute",
+                    "offsetTop": "85%",
+                    "offsetEnd": "18%",
+                    "gravity": "bottom",
+                    "offsetStart": "15%",
+                    "offsetBottom": "10%"
+                  }
+                ],
+                "paddingAll": "none"
+              }
+            },
+            {
+              "type": "bubble",
+              "hero": {
+                "type": "image",
+                "url": "https://img5.pic.in.th/file/secure-sv1/Copy-of---360-x-450-px-1.gif",
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "2.9:3",
+                "animated": true
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "backgroundColor": "#9370DB",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "1700 ศัพท์ระดับมัธยมคำศัพท์ภาษาอังกฤษที่ต้องใช้บ่อยชั้น ม.1-ม.6",
+                    "weight": "bold",
+                    "size": "md",
+                    "color": "#4A148C",
+                    "wrap": true
+                  },
+                  {
+                    "type": "text",
+                    "text": "แนะนำโดย : นตท.ภูริชญ์ อ.",
+                    "size": "sm",
+                    "color": "#6A1B9A",
+                    "wrap": true
+                  }
+                ],
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://youtube.com/shorts/7fBNn4VdbIY?si=6-a1w2BK8DA67oEZ"
+                }
+              }
+            },
+            {
+              "type": "bubble",
+              "hero": {
+                "type": "image",
+                "url": "https://img2.pic.in.th/86abc24ef5ab36af73c4310b74f5b3c2.gif",
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "2.9:3",
+                "animated": true
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "backgroundColor": "#9370DB",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "บ้านวิกลคนประหลาด เล่ม 2",
+                    "weight": "bold",
+                    "size": "md",
+                    "color": "#4A148C",
+                    "wrap": true
+                  },
+                  {
+                    "type": "text",
+                    "text": "แนะนำโดย : นตท.ปิโยรัฐ ต.",
+                    "size": "sm",
+                    "color": "#6A1B9A",
+                    "wrap": true
+                  }
+                ],
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://youtube.com/shorts/O_lbQFHH0f8?si=GE-H9g-BiVYp63aG"
+                }
+              }
+            }
+          ]
+        }
+      };
+
+      if (liff.isApiAvailable('shareTargetPicker')) {
+        const result = await liff.shareTargetPicker([flexMessage]);
+        if (result) {
+          console.log("แชร์สำเร็จ");
+        } else {
+          console.log("ยกเลิกการแชร์");
+        }
+      }
+    } catch (error) {
+      console.error("เกิดข้อผิดพลาด:", error);
+    }
+  }
+</script>
 
 </body>
 </html>
