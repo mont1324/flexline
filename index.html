@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Share Flex - แนะนำหนังสือ</title>
+  <title>Share Flex - แนะนำหนังสือและคอนเทนต์</title>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <style>
     body {
@@ -15,35 +15,37 @@
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       background-color: #f4f4f9;
     }
-    button {
+    /* Styled specifically like the Share Flex version but with better hover effects */
+    .share-btn {
       padding: 16px 32px;
       font-size: 20px;
       font-weight: bold;
-      border-radius: 50px;
+      border-radius: 12px;
       border: none;
       background-color: #06c755;
       color: white;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(6, 199, 85, 0.3);
-      transition: transform 0.2s, background-color 0.2s;
+      transition: all 0.2s ease-in-out;
     }
-    button:hover {
+    .share-btn:hover {
       background-color: #05a346;
-      transform: scale(1.05);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(6, 199, 85, 0.4);
     }
-    button:active {
-      transform: scale(0.95);
+    .share-btn:active {
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
 
-<button onclick="shareFlex()">แชร์ Flex ให้เพื่อน</button>
+<button class="share-btn" onclick="shareFlex()">แชร์ Flex ให้เพื่อน</button>
 
 <script>
   async function shareFlex() {
     try {
-      // เริ่มต้น LIFF (ใช้ liffId จากข้อมูลใหม่ที่ให้มา)
+      // Initialize using the LIFF ID from index.html
       await liff.init({ liffId: "2008718257-ImyQ8FhJ" });
 
       if (!liff.isLoggedIn()) {
@@ -57,6 +59,7 @@
         "contents": {
           "type": "carousel",
           "contents": [
+            // Slide 1: Cover Image from index.html
             {
               "type": "bubble",
               "body": {
@@ -75,13 +78,12 @@
                     "type": "button",
                     "action": {
                       "type": "uri",
-                      "uri": "https://liff.line.me/2008718257-ImyQ8FhJ",
+                      "uri": "https://liff.me/2008718257-ImyQ8FhJ",
                       "label": " "
                     },
                     "position": "absolute",
                     "offsetTop": "85%",
                     "offsetEnd": "18%",
-                    "gravity": "bottom",
                     "offsetStart": "15%",
                     "offsetBottom": "10%"
                   }
@@ -89,6 +91,31 @@
                 "paddingAll": "none"
               }
             },
+            // Slide 2: Re:Zero (from Share Flex.html)
+            {
+              "type": "bubble",
+              "hero": {
+                "type": "image",
+                "url": "https://img2.pic.in.th/pic/ReZERO--Starting-Life-in-Another-World----2bec7cbf0cc6c506d.png",
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "2.5:3",
+                "action": {
+                  "type": "uri",
+                  "uri": "https://youtube.com/shorts/q_AnbiJPUV0?si=OT0zyT0N54rPG2PB"
+                }
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "backgroundColor": "#9370DB",
+                "contents": [
+                  { "type": "text", "text": "Re:Zero Starting Life in Another World", "weight": "bold", "size": "md", "color": "#4A148C", "wrap": true },
+                  { "type": "text", "text": "แนะนำโดย : นตท.กานตวีร์ คงสุคนธ์", "size": "sm", "color": "#6A1B9A", "wrap": true }
+                ]
+              }
+            },
+            // Slide 3: 1700 Words (from original index.html)
             {
               "type": "bubble",
               "hero": {
@@ -104,64 +131,12 @@
                 "layout": "vertical",
                 "backgroundColor": "#9370DB",
                 "contents": [
-                  {
-                    "type": "text",
-                    "text": "1700 ศัพท์ระดับมัธยมคำศัพท์ภาษาอังกฤษที่ต้องใช้บ่อยชั้น ม.1-ม.6",
-                    "weight": "bold",
-                    "size": "md",
-                    "color": "#4A148C",
-                    "wrap": true
-                  },
-                  {
-                    "type": "text",
-                    "text": "แนะนำโดย : นตท.ภูริชญ์ อ.",
-                    "size": "sm",
-                    "color": "#6A1B9A",
-                    "wrap": true
-                  }
+                  { "type": "text", "text": "1700 ศัพท์ระดับมัธยม (ม.1-ม.6)", "weight": "bold", "size": "md", "color": "#4A148C", "wrap": true },
+                  { "type": "text", "text": "แนะนำโดย : นตท.ภูริชญ์ อ.", "size": "sm", "color": "#6A1B9A", "wrap": true }
                 ],
                 "action": {
                   "type": "uri",
-                  "label": "action",
                   "uri": "https://youtube.com/shorts/7fBNn4VdbIY?si=6-a1w2BK8DA67oEZ"
-                }
-              }
-            },
-            {
-              "type": "bubble",
-              "hero": {
-                "type": "image",
-                "url": "https://img2.pic.in.th/86abc24ef5ab36af73c4310b74f5b3c2.gif",
-                "size": "full",
-                "aspectMode": "cover",
-                "aspectRatio": "2.9:3",
-                "animated": true
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "backgroundColor": "#9370DB",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "บ้านวิกลคนประหลาด เล่ม 2",
-                    "weight": "bold",
-                    "size": "md",
-                    "color": "#4A148C",
-                    "wrap": true
-                  },
-                  {
-                    "type": "text",
-                    "text": "แนะนำโดย : นตท.ปิโยรัฐ ต.",
-                    "size": "sm",
-                    "color": "#6A1B9A",
-                    "wrap": true
-                  }
-                ],
-                "action": {
-                  "type": "uri",
-                  "label": "action",
-                  "uri": "https://youtube.com/shorts/O_lbQFHH0f8?si=GE-H9g-BiVYp63aG"
                 }
               }
             }
@@ -170,15 +145,10 @@
       };
 
       if (liff.isApiAvailable('shareTargetPicker')) {
-        const result = await liff.shareTargetPicker([flexMessage]);
-        if (result) {
-          console.log("แชร์สำเร็จ");
-        } else {
-          console.log("ยกเลิกการแชร์");
-        }
+        await liff.shareTargetPicker([flexMessage]);
       }
     } catch (error) {
-      console.error("เกิดข้อผิดพลาด:", error);
+      console.error("Error:", error);
     }
   }
 </script>
