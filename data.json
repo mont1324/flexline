@@ -1,0 +1,122 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "size": "full",
+            "animated": true,
+            "aspectMode": "cover",
+            "aspectRatio": "2.3:3",
+            "offsetBottom": "none",
+            "url": "https://img5.pic.in.th/file/secure-sv1/Copy-of---360-x-450-pxf3e04f07137031af.gif"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "uri": "http://linecorp.com/",
+              "label": "    "
+            },
+            "position": "absolute",
+            "offsetTop": "85%",
+            "offsetEnd": "18%",
+            "gravity": "bottom",
+            "offsetStart": "15%",
+            "offsetBottom": "10%"
+          }
+        ],
+        "borderWidth": "none",
+        "paddingAll": "none"
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://img5.pic.in.th/file/secure-sv1/Copy-of---360-x-450-px-1.gif",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "2.9:3",
+        "animated": true
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "backgroundColor": "#9370DB",
+        "contents": [
+          {
+            "type": "text",
+            "text": "1700 ศัพท์ระดับมัธยมคำศัพท์ภาษาอังกฤษที่ต้องใช้บ่อยชั้น ม.1-ม.6",
+            "weight": "bold",
+            "size": "md",
+            "color": "#4A148C",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "แนะนำโดย : นตท.ภูริชญ์ อ.",
+            "size": "sm",
+            "color": "#6A1B9A",
+            "wrap": true
+          }
+        ],
+        "cornerRadius": "none",
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://youtube.com/shorts/7fBNn4VdbIY?si=6-a1w2BK8DA67oEZ"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://img2.pic.in.th/86abc24ef5ab36af73c4310b74f5b3c2.gif",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "2.9:3",
+        "animated": true
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "backgroundColor": "#9370DB",
+        "contents": [
+          {
+            "type": "text",
+            "text": "บ้านวิกลคนประหลาด เล่ม 2",
+            "weight": "bold",
+            "size": "md",
+            "color": "#4A148C",
+            "wrap": true,
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://youtube.com/shorts/7fBNn4VdbIY?si=6-a1w2BK8DA67oEZ"
+            }
+          },
+          {
+            "type": "text",
+            "text": "แนะนำโดย : นตท.ปิโยรัฐ ต.",
+            "size": "sm",
+            "color": "#6A1B9A",
+            "wrap": true
+          }
+        ],
+        "cornerRadius": "none",
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://youtube.com/shorts/O_lbQFHH0f8?si=GE-H9g-BiVYp63aG"
+        }
+      }
+    }
+  ]
+}
